@@ -188,6 +188,7 @@
   position: relative;
   overflow: hidden;
   transition: color 1s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .button__text {
@@ -220,7 +221,6 @@
 .animated__button:focus-visible {
   outline: none;
   box-shadow: 2px 2px 0px currentColor;
-  transition: 0.3s ease;
 }
 
 .animated__button::before {
