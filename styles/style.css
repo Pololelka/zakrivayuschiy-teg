@@ -187,8 +187,7 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: color 1s ease;
-  transition: box-shadow 0.3s ease;
+  transition: color 1s ease, box-shadow 0.3s ease;
 }
 
 .button__text {
