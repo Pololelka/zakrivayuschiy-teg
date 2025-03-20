@@ -19,12 +19,10 @@
   font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-variation-settings: 'wght' var(--text-card-weight);
   color: var(--accent-color);
-  background-color: var(--background-color);
-  background-image: var(--background-image);
-  background-size: 4px;
-  background-repeat: repeat;
-  background-attachment: fixed;
   font-size: 18px;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .header {
@@ -118,6 +116,12 @@
   animation: arrow 0.5s ease-in-out infinite alternate;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-block-end: 100px;
+}
 
 .post {
   inline-size: clamp(23.438rem, 30.516vw + 16.285rem, 43.75rem);
@@ -134,10 +138,41 @@
 
 .post_image {
   inline-size: 100%;
-  border-inline-start: 2px solid var(--accent-color);
-  border-inline-end: 2px solid var(--accent-color);
   object-fit: cover;
   object-position: center;
+  aspect-ratio: 1 / 1;
+}
+
+.wrapper__image {
+  position: relative;
+  border-inline-start: 2px solid var(--accent-color);
+  border-inline-end: 2px solid var(--accent-color);
+}
+
+.label {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  font-family: var(--accent-font), fantasy;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  text-shadow:
+    -1px 0 var(--color-text-stroke),
+    0 1px var(--color-text-stroke),
+    1px 0 var(--color-text-stroke),
+    0 -1px var(--color-text-stroke);
+  mix-blend-mode: hard-light;
+  opacity: 50%;
+  z-index: 1;
+}
+
+@supports((text-stroke: 0.5px var(--color-text-stroke)) or (-webkit-text-stroke: 0.5px var(--color-text-stroke))) {
+  .label {
+    -webkit-text-stroke: 0.5px var(--color-text-stroke);
+    text-stroke: 0.5px var(--color-text-stroke);
+    text-shadow: none;
+  }
 }
 
 .post_content {
@@ -183,16 +218,19 @@
   font-family: var(--accent-font), fantasy;
   font-size: 14px;
   background-color: var(--background-color);
+  color: var(--btn-text-color);
   border: 2px solid var(--accent-color);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: color 1s ease, box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .button__text {
   position: relative;
+  mix-blend-mode: difference;
 }
+
 
 .card__like-button {
   inline-size: 130px;
@@ -205,12 +243,16 @@
   z-index: 2;
 }
 
+.animated__button .floppy-icon {
+  mix-blend-mode: difference;
+}
+
 .card__save-button {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 15px 19px;
-  margin: 50px auto 100px;
+  margin: 0 auto;
 }
 
 .animated__button:focus {
@@ -219,7 +261,7 @@
 
 .animated__button:focus-visible {
   outline: none;
-  box-shadow: 2px 2px 0px currentColor;
+  box-shadow: 2px 2px 0px var(--accent-color);
 }
 
 .animated__button::before {
@@ -236,10 +278,6 @@
 
 .animated__button:hover::before {
   transform: translateX(0);
-}
-
-.animated__button:hover {
-  color: var(--background-color);
 }
 
 .sparks {
@@ -307,6 +345,80 @@
   animation-duration: 0.3s;
   animation-timing-function: ease-in;
   animation-direction: alternate;
+}
+
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
+dialog[open] {
+  display: grid;
+}
+
+dialog {
+  align-items: center;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
+  row-gap: 30px;
+  column-gap: 20px;
+  inline-size: 353px;
+  background-color: var(--background-color);
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 30px;
+  font-size: 14px;
+}
+
+.dialog__text {
+  font-family: var(--accent-font), fantasy;
+  font-size: inherit;
+  text-transform: uppercase;
+  line-height: 150%;
+}
+
+dialog .floppy-icon {
+  width: 39px;
+  height: 39px;
+}
+
+.close__button {
+  inline-size: 100%;
+  padding: 10px 0;
+  grid-column: span 2;
+  text-transform: uppercase;
+  font-size: inherit
+}
+
+.invert_filter {
+  filter: invert(0.9) saturate(200%) hue-rotate(160deg);
+}
+
+.saturate_filter {
+  filter: saturate(150%) hue-rotate(270deg);
+}
+
+.brightness_filter {
+  filter: brightness(60%) hue-rotate(270deg);
+}
+
+.sepia_filter {
+  filter: sepia(60%) hue-rotate(270deg);
+}
+
+.grayscale_filter {
+  filter: grayscale(50%) hue-rotate(270deg);
+}
+
+.contrast_filter{
+  filter: contrast(70%) blur(5px);
+}
+
+.hue-rotate_filter{
+  filter: hue-rotate(180deg);
+}
+
+.opacity_filter{
+  filter: opacity(70%) blur(5px);
 }
 
 @media (width <=375px) {
