@@ -409,15 +409,15 @@ dialog .floppy-icon {
   filter: grayscale(50%) hue-rotate(270deg);
 }
 
-.contrast_filter{
+.contrast_filter {
   filter: contrast(70%) blur(5px);
 }
 
-.hue-rotate_filter{
+.hue-rotate_filter {
   filter: hue-rotate(180deg);
 }
 
-.opacity_filter{
+.opacity_filter {
   filter: opacity(70%) blur(5px);
 }
 
